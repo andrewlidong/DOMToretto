@@ -52,8 +52,8 @@ class DomNodeCollection {
 
     removeClass(...classes) {
         this.elements.forEach(el => {
-            classes.forEach(class => {
-                el.classList.remove(class);
+            classes.forEach(c => {
+                el.classList.remove(c);
             });
         });
     }
