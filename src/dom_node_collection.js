@@ -1,105 +1,88 @@
 class DomNodeCollection {
     constructor(arr) {
-        this.elements = arr
+        this.elements = arr;
     }
 
     html(string) {
         if (string || string === '') {
-
             this.elements.forEach(el => {
-                el.innerHTML = string
-            })
-
+                el.innerHTML = string;
+            });
         } else {
-
-            return this.elements[0].innerHTML
+            return this.elements[0].innerHTML;
         }
     }
 
     empty() {
-        this.html('')
+        this.html('');
     }
 
     append(someEl) {
-
         if (someEl instanceof DomNodeCollection) {
-
             this.elements.forEach(el => {
                 someEl.elements.forEach(subEl => {
-                    el.innerHTML += subEl.outerHTML
-                })
-            })
-
+                    el.innerHTML += subEl.outerHTML;
+                });
+            });
         } else if (someEl instanceof HTMLElement) {
-
             this.elements.forEach(el => {
-                el.innerHTML += someEl.outerHTML
-            })
-
+                el.innerHTML += someEl.outerHTML;
+            });
         } else if (typeof someEl === 'string') {
-
             this.elements.forEach(el => {
-                el.innerHTML += someEl
-            })
+                el.innerHTML += someEl;
+            });
         }
     }
 
     attr(someAttribute) {
-        const attrs = this.elements[0].attributes
-
+        const attrs = this.elements[0].attributes;
         if (attrs[someAttribute]) {
-            return attrs[someAttribute].nodeValue
+            return attrs[someAttribute].nodeValue;
         } else {
-            return undefined
+            return undefined;
         }
     }
 
     addClass(...classes) {
         this.elements.forEach(el => {
-            el.className += ' ' + classes.join(' ')
-        })
+            el.className += ' ' + classes.join(' ');
+        });
     }
 
     removeClass(...classes) {
         this.elements.forEach(el => {
-
-            classes.forEach(c => {
-                el.classList.remove(c)
-            })
-        })
+            classes.forEach(class => {
+                el.classList.remove(class);
+            });
+        });
     }
 
     children() {
-        const children = []
-
+        const children = [];
         this.elements.forEach(el => {
             Array.from(el.children).forEach(child => {
-                children.push(child)
-            })
-        })
-
-        return new DomNodeCollection(children)
+                children.push(child);
+            });
+        });
+        return new DomNodeCollection(children);
     }
 
     parent() {
-        const parents = []
-
+        const parents = [];
         this.elements.forEach(el => {
-            parents.push(el.parentNode)
-        })
-
-        return new DomNodeCollection(parents)
+            parents.push(el.parentNode);
+        });
+        return new DomNodeCollection(parents);
     }
 
     find(selector) {
-        const results = []
-
+        const results = [];
         this.elements.forEach(el => {
-            const hits = Array.from(el.querySelectorAll(`${selector}`))
-            hits.forEach(hit => results.push(hit))
-        })
-
-        return new DomNodeCollection(results)
+            const hits = Array.from(el.querySelectorAll(`${selector}`));
+            hits.forEach(hit => results.push(hit));
+        });
+        return new DomNodeCollection(results);
     }
 
     remove(selector) {
@@ -107,81 +90,79 @@ class DomNodeCollection {
             if (selector) {
                 Array.from(el.querySelectorAll(selector)).forEach(child => {
                     // el might not be the direct parent of the child
-                    child.parentNode.removeChild(child)
+                    child.parentNode.removeChild(child);
                 })
             } else {
-                el.parentNode.removeChild(el)
-                this.elements = []
+                el.parentNode.removeChild(el);
+                this.elements = [];
             }
-        })
+        });
     }
 
     on(event, callback) {
         this.elements.forEach(el => {
-
-            el.addEventListener(event, callback)
-
+            el.addEventListener(event, callback);
             if (!el.attributes.listeners) {
-                el.attributes.listeners = {}
-                el.attributes.listeners[event] = callback
+                el.attributes.listeners = {};
+                el.attributes.listeners[event] = callback;
             } else {
-                el.attributes.listeners[event] = callback
+                el.attributes.listeners[event] = callback;
             }
-        })
+        });
     }
 
     off(event) {
         this.elements.forEach(el => {
-            el.removeEventListener(event, el.attributes.listeners[event])
-        })
+            el.removeEventListener(event, el.attributes.listeners[event]);
+        });
     }
 
     hide() {
         this.elements.forEach(el => {
-            el.style.display = 'none'
-        })
+            el.style.display = 'none';
+        });
     }
 
     css(propName, propVal = null) {
         if (!propVal) {
             if (typeof propName === 'string') {
-                return this.elements[0].style[propName]
+                return this.elements[0].style[propName];
             }
 
             if (propName instanceof Array) {
-                return propName.map(name => this.elements[0].style[name])
+                return propName.map(name => this.elements[0].style[name]);
             }
 
             if (Object.getPrototypeOf(propName) === Object.prototype) {
                 this.elements.forEach(el => {
-                    Object.assign(el.style, propName)
-                })
-                return
+                    Object.assign(el.style, propName);
+                });
+                return;
             }
         }
 
         if (propVal instanceof Function) {
             this.elements.forEach((el, i) => {
-                el.style[propName] = propVal(i, el.style[propName])
+                el.style[propName] = propVal(i, el.style[propName]);
             })
-            return
+            return;
         }
 
         this.elements.forEach(el => {
-            el.style[propName] = propVal
-        })
+            el.style[propName] = propVal;
+        });
     }
 
     animate(properties, duration = 1000, easing = 'ease', callback = () => { }) {
         this.elements.forEach(el => {
 
             const handleEnd = event => {
-                el.removeEventListener('transitionend', handleEnd)
+                el.removeEventListener('transitionend', handleEnd);
                 Object.assign(el.style, initialStyles)
-                callback(event)
+                callback(event);
             }
 
-            el.addEventListener('transitionend', handleEnd)
+            el.addEventListener('transitionend', handleEnd);
 
             const initialStyles = {
                 'transition-duration': el.style['transition-duration'],
@@ -189,19 +170,19 @@ class DomNodeCollection {
             }
 
             el.style['transition-duration'] = `${duration / 1000}s`
-            el.style['transition-timing-function'] = easing
+            el.style['transition-timing-function'] = easing;
 
-            Object.assign(el.style, properties)
+            Object.assign(el.style, properties);
         })
     }
 
     fadein(duration, callback) {
-        this.animate({ opacity: 1 }, duration, undefined, callback)
+        this.animate({ opacity: 1 }, duration, undefined, callback);
     }
 
     fadeout(duration, callback) {
-        this.animate({ opacity: 0 }, duration, undefined, callback)
+        this.animate({ opacity: 0 }, duration, undefined, callback);
     }
 }
 
-export default DomNodeCollection
+export default DomNodeCollection;

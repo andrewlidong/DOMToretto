@@ -6,7 +6,7 @@ Functionality:
 * Queue and Remove Event Listeners
 * Send HTTP Requests
 
-## API
+<!-- ## API
 
 [`toretto$`](#toretto)
 
@@ -35,7 +35,7 @@ Functionality:
   * [`on`](#on)  
   * [`off`](#off)  
 
-[`toretto$.ajax`](#torettoajax)
+[`toretto$.ajax`](#torettoajax) -->
 
 ## `toretto$`
 The DOMToretto library uses the global variable toretto$ as a wrapper for all methods in the DOMToretto library.  
@@ -72,20 +72,20 @@ toretto$(start2)
 In addition to the `toretto$` method, there are methods defined on `DOMNodeCollection` that aid in the traversal and selection of DOM elements.  
 
 #### `children`
-Returns a `DOMNodeCollection` containing all child elements of the wrapped `HTMLElement`.  Note this only includes *direct* children.
+Returns a `DOMNodeCollection` containing all children of the wrapped `HTMLElement`.  Note this only includes *direct* children.
 
 #### `parent`
-Returns a `DOMNodeCollection` containing the parent elements of the wrapped `HTMLElement`.
+Returns a `DOMNodeCollection` containing the parent of the wrapped `HTMLElement`.
 
 #### `find( selector )`
-Returns a `DOMNodeCollection` containing descendants of all wrapped `HTMLElement`s, filtered by selector.
+Returns a `DOMNodeCollection` containing descendants of all wrapped `HTMLElement`s by selector.
 
 ## DOM Manipulation
 
 #### `html( [string] )`
 
-* With argument: modifies the `innerHTML` of each element wrapped in the `DOMNodeCollection`.
 * Without argument: returns the `innerHTML` of the first element wrapped in the collection.
+* With argument: modifies the `innerHTML` of each element wrapped in the `DOMNodeCollection`.
 
 #### `empty`
 
@@ -115,11 +115,9 @@ Returns the selected HTML attribute for the first wrapped element in the `DOMNod
 
 #### `hide`
 
-Hides all wrapped elements in the `DOMNodeCollection` by setting their display property.
+Hides all wrapped elements in the `DOMNodeCollection` by setting their display property to none.
 
 #### `css( propName, [propVal] )`
-
-The `css` method will provide different functionality based on the arguments given.
 
 * With `propName` as `string`: returns the value of the specified css property on the first wrapped element.
 * With `propName` as `array`: returns the values of the specified css properties on the first wrapped element.
@@ -207,7 +205,7 @@ const test = toretto$.ajax({
 })
 ```
 
-Because `toretto$.ajax` returns a promise, additional callbacks can be chained to the above HTTP request.
+Since `toretto$.ajax` returns a promise, additional callbacks can be chained to the above HTTP request.
 
 Example:
 ```javascript

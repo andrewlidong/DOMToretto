@@ -1,30 +1,28 @@
 import DomNodeCollection from './dom_node_collection'
 
-const queue = []
+const queue = [];
 
 const toretto$ = (arg) => {
-
     if (typeof arg === 'string') {
-        const arr = Array.from(document.querySelectorAll(`${arg}`))
-        return new DomNodeCollection(arr)
+        const arr = Array.from(document.querySelectorAll(`${arg}`));
+        return new DomNodeCollection(arr);
     }
 
     if (arg instanceof HTMLElement) {
-        return new DomNodeCollection([arg])
+        return new DomNodeCollection([arg]);
     }
 
     if (arg instanceof Function) {
-
         if (document.readyState === 'complete') {
-            arg()
-            return
+            arg();
+            return;
         }
 
-        queue.push(arg)
+        queue.push(arg);
     }
 }
 
-const passthrough = x => x
+const passthrough = x => x;
 
 toretto$.ajax = ({
     // default options
@@ -40,32 +38,32 @@ toretto$.ajax = ({
         const change = (e) => {
 
             if (xhr.readyState === 4 && xhr.status === 200) {
-                resolve(success(xhr.responseText))
+                resolve(success(xhr.responseText));
             }
 
             if (xhr.readyState === 4 && xhr.status !== 200) {
-                reject(error(xhr.status))
+                reject(error(xhr.status));
             }
         }
 
-        const xhr = new XMLHttpRequest()
-        xhr.open(method, url)
-        xhr.addEventListener('readystatechange', change)
+        const xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.addEventListener('readystatechange', change);
 
         if (method.toLowerCase() === 'post') {
-            xhr.contentType = contentType
-            xhr.send(data)
-            return
+            xhr.contentType = contentType;
+            xhr.send(data);
+            return;
         }
 
-        xhr.send()
+        xhr.send();
     })
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     queue.forEach(func => {
-        func()
+        func();
     })
 })
 
-window.toretto$ = toretto$
+window.toretto$ = toretto$;
