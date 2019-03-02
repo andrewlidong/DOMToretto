@@ -1,21 +1,14 @@
 # DOMToretto
 DOMToretto is a lightweight DOM manipulation library inspired by jQuery. 
 
-Users can:
-* Select and manipulate DOM elements
-* Queue up and remove event listeners
-* Send HTTP requests
-
-## Getting Started
-DOMToretto is available via CDN, courtesy of StackPath.  Simply add the following script tag to your index.html page:
-
-```html
-<script src="https://cdn.rawgit.com/ChrisCavs/DOMToretto/0664338a/lib/bundle.js"></script>
-```
+Functionality:
+* Select and Manipulate DOM elements
+* Queue and Remove Event Listeners
+* Send HTTP Requests
 
 ## API
 
-[`Toretto$`](#Toretto)
+[`toretto$`](#toretto)
 
 [DOM Selection](#dom-selection)
   * [`children`](#children)
@@ -42,19 +35,19 @@ DOMToretto is available via CDN, courtesy of StackPath.  Simply add the followin
   * [`on`](#on)  
   * [`off`](#off)  
 
-[`c$.ajax`](#cajax)
+[`toretto$.ajax`](#torettoajax)
 
 ## `toretto$`
-The DOMToretto library uses the global variable toretto$ as a wrapper for all methods in the DOMToretto library.  It has 3 uses:
+The DOMToretto library uses the global variable toretto$ as a wrapper for all methods in the DOMToretto library.  
 
-1. toretto$ is commonly used to select one or multiple elements via CSS selectors (ex: `toretto$('.test')`).  This returns a `DOMNodeCollection` object containing an array of `HTMLElement`s.  This collection has a multitude of instance methods defined on it.
+1. toretto$ can be used to select one or multiple elements via CSS selectors (ex: `toretto$('.test')`).  This returns a `DOMNodeCollection` object containing an array of `HTMLElements`.  
 
-2. toretto$ can take unwrapped `HTMLElement`s and wrap them into a `DOMNodeCollection`.
+2. toretto$ can take unwrapped `HTMLElements` and wrap them into a `DOMNodeCollection`.
 
-3. toretto$ can also queue functions to run once the DOM content of the page has fully loaded.  An example:
+3. toretto$ can queue functions to run once the DOM content of the page has fully loaded.  For example:
 
 ```javascript
-// will only run once DOM Content is loaded
+// will run once DOM Content is loaded
 
 toretto$(() => {
   console.log('DOM Content Loaded')
@@ -62,26 +55,26 @@ toretto$(() => {
 
 // can also queue functions to run once loaded
 
-const setup1 = () => {
+const start1 = () => {
   console.log('start 1')
 }
 
-const setup2 = () => {
+const start2 = () => {
   console.log('start 2')
 }
 
-toretto$(setup1)
-toretto$(setup2)
+toretto$(start1)
+toretto$(start2)
 ```
 
 ## DOM Selection
-In addition to the `toretto$` method, there are methods defined on the `DOMNodeCollection` that will help traverse and select DOM elements.
+In addition to the `toretto$` method, there are methods defined on `DOMNodeCollection` that aid in the traversal and selection of DOM elements.  
 
 #### `children`
-Returns a `DOMNodeCollection` containing all of the children elements of the wrapped `HTMLElement`/s.  Note that this only includes *direct* children.
+Returns a `DOMNodeCollection` containing all child elements of the wrapped `HTMLElement`.  Note this only includes *direct* children.
 
 #### `parent`
-Returns a `DOMNodeCollection` containing the parent elements of the wrapped `HTMLElement`/s.
+Returns a `DOMNodeCollection` containing the parent elements of the wrapped `HTMLElement`.
 
 #### `find( selector )`
 Returns a `DOMNodeCollection` containing descendants of all wrapped `HTMLElement`s, filtered by selector.
@@ -188,7 +181,7 @@ Adds event listener to each wrapped element.  List of events are available [here
 
 Removes event listener from each wrapped element.
 
-## c$.ajax
+## toretto$.ajax
 
 Sends HTTP Request and returns a `Promise` object.  Accepts an object as an argument with any of the following attributes:
   * method (default: 'GET'): HTTP Request method or type

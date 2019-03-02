@@ -116,23 +116,23 @@ class DomNodeCollection {
         })
     }
 
-    on(ev, cb) {
+    on(event, callback) {
         this.elements.forEach(el => {
 
-            el.addEventListener(ev, cb)
+            el.addEventListener(event, callback)
 
             if (!el.attributes.listeners) {
                 el.attributes.listeners = {}
-                el.attributes.listeners[ev] = cb
+                el.attributes.listeners[event] = callback
             } else {
-                el.attributes.listeners[ev] = cb
+                el.attributes.listeners[event] = callback
             }
         })
     }
 
-    off(ev) {
+    off(event) {
         this.elements.forEach(el => {
-            el.removeEventListener(ev, el.attributes.listeners[ev])
+            el.removeEventListener(event, el.attributes.listeners[event])
         })
     }
 
@@ -172,13 +172,13 @@ class DomNodeCollection {
         })
     }
 
-    animate(properties, duration = 1000, easing = 'ease', cb = () => { }) {
+    animate(properties, duration = 1000, easing = 'ease', callback = () => { }) {
         this.elements.forEach(el => {
 
             const handleEnd = event => {
                 el.removeEventListener('transitionend', handleEnd)
                 Object.assign(el.style, initialStyles)
-                cb(event)
+                callback(event)
             }
 
             el.addEventListener('transitionend', handleEnd)
@@ -195,12 +195,12 @@ class DomNodeCollection {
         })
     }
 
-    fadein(duration, cb) {
-        this.animate({ opacity: 1 }, duration, undefined, cb)
+    fadein(duration, callback) {
+        this.animate({ opacity: 1 }, duration, undefined, callback)
     }
 
-    fadeout(duration, cb) {
-        this.animate({ opacity: 0 }, duration, undefined, cb)
+    fadeout(duration, callback) {
+        this.animate({ opacity: 0 }, duration, undefined, callback)
     }
 }
 
