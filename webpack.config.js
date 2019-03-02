@@ -1,8 +1,25 @@
+
+const path = require('path');
+
 module.exports = {
-  entry: "./lib/main.js",
-  output: {
-    path: __dirname,
-    filename: "./lib/jquery_lite.js"
-	},
-	devtool: "source-map"
-};
+    entry: './source/main.js',
+    output: {
+        path: path.resolve(__dirname, 'lib'),
+        filename: 'bundle.js'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    query: {
+                        presets: ['env']
+                    }
+                }
+            }
+        ]
+    },
+    devtool: 'source-map'
+}
