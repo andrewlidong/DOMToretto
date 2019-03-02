@@ -44,8 +44,9 @@ The DOMToretto library uses the global variable toretto$ as a wrapper for all me
 
 2. toretto$ can take unwrapped `HTMLElements` and wrap them into a `DOMNodeCollection`.
 
-3. toretto$ can queue functions to run once the DOM content of the page has fully loaded.  For example:
+3. toretto$ can queue functions to run once the DOM content of the page has fully loaded.  
 
+Ex:
 ```javascript
 // will run once DOM Content is loaded
 
@@ -124,13 +125,14 @@ The `css` method will provide different functionality based on the arguments giv
 * With `propName` as `array`: returns the values of the specified css properties on the first wrapped element.
 * With `propName` as `object`: sets the specified css properties for each wrapped element.
 
+Ex:
 ```javascript
 // will apply all css properties specified in the POJO
 
 c$('.test').css({
-  width: '200px',
-  height: '200px',
-  'background-color': 'red'
+  width: '50px',
+  height: '50px',
+  'background-color': 'blue'
 })
 ```
 
@@ -159,6 +161,7 @@ Fades the wrapped elements out.
 
 ## Event Listeners
 
+Ex:
 ```javascript
 // define a handler
 const handler = () => {
@@ -191,6 +194,7 @@ Sends HTTP Request and returns a `Promise` object.  Accepts an object as an argu
   * data: data object (for 'POST')
   * contentType (default: 'application/x-www-form-urlencoded; charset=UTF-8'): content type of HTTP Request
 
+Ex:
 ```javascript
 // basic GET request
 
@@ -205,6 +209,7 @@ const test = toretto$.ajax({
 
 Because `toretto$.ajax` returns a promise, additional callbacks can be chained to the above HTTP request.
 
+Ex:
 ```javascript
 ...
 
