@@ -6,37 +6,6 @@ Functionality:
 * Queue and Remove Event Listeners
 * Send HTTP Requests
 
-<!-- ## API
-
-[`toretto$`](#toretto)
-
-[DOM Selection](#dom-selection)
-  * [`children`](#children)
-  * [`parent`](#parent)
-  * [`find`](#find)
-
-[DOM Manipulation](#dom-manipulation)  
-  * [`html`](#html)  
-  * [`empty`](#empty)  
-  * [`append`](#append)  
-  * [`remove`](#remove)  
-  * [`attr`](#attr)  
-  * [`addClass`](#addclass)  
-  * [`removeClass`](#removeclass)
-  * [`hide`](#hide)
-  * [`css`](#css)
-
-[Effects](#effects)
-  * [`animate`](#animate)
-  * [`fadein`](#fade-in)
-  * [`fadeout`](#fade-out)
-  
-[Event Listeners](#event-listeners)  
-  * [`on`](#on)  
-  * [`off`](#off)  
-
-[`toretto$.ajax`](#torettoajax) -->
-
 ## `toretto$`
 The DOMToretto library uses the global variable toretto$ as a wrapper for all methods in the DOMToretto library.  
 
