@@ -1,7 +1,7 @@
 # DOMToretto
 DOMToretto is a lightweight DOM manipulation library inspired by jQuery. 
 
-Functionality:
+Technical Highlights:
 * Select and Manipulate DOM elements
 * Queue and Remove Event Listeners
 * Send HTTP Requests
@@ -41,7 +41,7 @@ toretto$(start2)
 In addition to the `toretto$` method, there are methods defined on `DOMNodeCollection` that aid in the traversal and selection of DOM elements.  
 
 #### `children`
-Returns a `DOMNodeCollection` containing all children of the wrapped `HTMLElement`.  Note this only includes *direct* children.
+Returns a `DOMNodeCollection` containing all *direct* children of the wrapped `HTMLElement`.  
 
 #### `parent`
 Returns a `DOMNodeCollection` containing the parent of the wrapped `HTMLElement`.
