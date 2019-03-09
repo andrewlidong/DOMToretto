@@ -88,18 +88,18 @@ Hides all wrapped elements in the `DOMNodeCollection` by setting their display p
 
 #### `css( propName, [propVal] )`
 
+Applies all css properties specified in the POJO
+
 * With `propName` as `string`: returns the value of the specified css property on the first wrapped element.
 * With `propName` as `array`: returns the values of the specified css properties on the first wrapped element.
 * With `propName` as `object`: sets the specified css properties for each wrapped element.
 
 Example:
 ```javascript
-// will apply all css properties specified in the POJO
-
 c$('.test').css({
   width: '50px',
   height: '50px',
-  'background-color': 'blue'
+  'background-color': 'grey'
 })
 ```
 
@@ -163,7 +163,6 @@ Sends HTTP Request and returns a `Promise` object.  Accepts an object as an argu
 
 Example:
 ```javascript
-// basic GET request
 
 const test = toretto$.ajax({
   url: '/api/example',
